@@ -1,0 +1,230 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>DECKIT - Simplify Study, Amplify Success</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Add Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style2.css'%}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Outfit:wght@100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="top_container">
+        <nav class="navbar">
+            <a class="navbar-brand" href="{% url 'hero' %}">
+                <img src="{% static 'images/logo.png' %}" width="70" height="70" class="d-inline-block align-self-center" alt="logo">
+                DECKIT
+            </a>
+
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks">
+                <span class="toggler-icon"></span>
+                <span class="toggler-icon"></span>
+                <span class="toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarLinks">
+                <div class="navbar-nav ml-auto d-flex flex-row flex-lg-row">
+                    <a class="nav-link btn btn-primary rounded-pill mx-2" href="{% url 'login' %}">Login</a>
+                    <a class="nav-link btn btn-primary rounded-pill mx-2" href="{% url 'signup' %}">Signup</a>
+                </div>
+            </div>
+        </nav>
+
+        <section class="hero_section">
+            <div class="hero-container container">
+                <div class="hero_detail-box" data-aos="fade-right">
+                    <h1>
+                        Simplify Study,<br>
+                        <span class="highlight">Amplify Success</span>
+                    </h1>
+                    <p>
+                        Revolutionize your learning experience with AI-powered interactive flashcards.
+                        DECkit combines cognitive science with smart technology to boost retention.
+                    </p>
+                    <div class="hero-button">
+                        <a href="{% url 'home' %}" class="btn btn-primary btn-lg rounded-pill px-5 py-3">
+                            Start Learning Free
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <div class="trust-badge mt-4">
+                            <img src="{% static 'images\star.png' %}" alt="stars" width="30">
+                            4.9/5 from 10k+ students
+                        </div>
+                    </div>
+                </div>
+                <div class="hero_img-container" data-aos="fade-left">
+                    <img src="{% static 'images\home_diagram-removebg-preview.png' %}" alt="Flashcard interface preview">
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="container">
+        <section class="intro_section">
+            <div class="intro-container container">
+                <div class="intro_detail-box" data-aos="fade-right">
+                    <strong class="text-primary">REVOLUTIONIZE STUDY</strong>
+                    <h1>
+                        What are Flashcards?
+                    </h1>
+                    <p>
+                        Flashcards are compact, versatile tools that transform learning into a fun, interactive
+                        experience. They simplify complex topics, helping you retain essential information more
+                        efficiently while keeping the study process engaging and effective.
+                    </p>
+                </div>
+                <div class="intro_img-container" data-aos="fade-left">
+                    <div>
+                        <img src="{% static 'images/Graduation.png' %}" alt="" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="intro-container container">
+                <div class="intro_img-container" data-aos="fade-right">
+                    <div>
+                        <img src="{% static 'images\Student Studying.png' %}" alt="" class="img-fluid">
+                    </div>
+                </div>
+                <div class="intro_detail-box" data-aos="fade-left">
+                    <strong class="text-primary">TOTAL CUSTOMIZATION</strong>
+                    <h1>
+                        Enhance effective learning with interactive flashcards
+                    </h1>
+                    <p>
+                        Flashcards have become a game changer for learners. By personalizing them and making them
+                        interactive, you're not only making it easier to remember critical info, but you're also making
+                        the learning process more engaging and efficient.
+                    </p>
+                    <div class="hero-button">
+                        <a href="{% url 'home' %}" class="btn btn-primary btn-lg rounded-pill px-5 py-3">Create your own flashcards</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <section class="steps-section py-5">
+        <div class="container text-center">
+            <h2 class="mb-5" data-aos="fade-up">Master Learning in 3 Simple Steps</h2>
+
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-4" data-aos="fade-up">
+                    <div class="step-card p-4 bg-white rounded-lg shadow-lg">
+                        <div class="step-number">01</div>
+                        <img src="{% static 'images\pencil.svg' %}" alt="Create" class="mb-3" width="50">
+                        <h3 class="h4">Create</h3>
+                        <p class="text-muted">Build flashcards with text, images, and audio in seconds</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-card p-4 bg-white rounded-lg shadow-lg">
+                        <div class="step-number">02</div>
+                        <img src="{% static 'images\graduation-cap.svg' %}" alt="Study" class="mb-3" width="50">
+                        <h3 class="h4">Study Smart</h3>
+                        <p class="text-muted">Let our algorithm determine your optimal review schedule</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-card p-4 bg-white rounded-lg shadow-lg">
+                        <div class="step-number">03</div>
+                        <img src="{% static 'images\chart-histogram.svg' %}" alt="Succeed" class="mb-3" width="50">
+                        <h3 class="h4">Retain & Ace</h3>
+                        <p class="text-muted">Track progress and retain information 4x longer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Trusted by 50,000+ Learners</h2>
+
+            <div class="row">
+                <div class="col-md-6 mb-4" data-aos="zoom-in">
+                    <div class="testimonial-card p-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{% static 'images\client.png' %}" alt="Sarah" class="rounded-circle mr-3" width="60">
+                            <div>
+                                <h4 class="mb-0">Sarah</h4>
+                                <p class="text-muted mb-0">Medical Student</p>
+                            </div>
+                        </div>
+                        <p class="mb-0">"DECKIT helped me cut my study time in half. The spaced repetition feature is
+                            exactly what I needed!"</p>
+                        <div class="stars mt-3">
+                            ★★★★★
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="testimonial-card p-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{% static 'images\client.png' %}" alt="Raj" class="rounded-circle mr-3" width="60">
+                            <div>
+                                <h4 class="mb-0">Raj Gajjar</h4>
+                                <p class="text-muted mb-0">High School Teacher</p>
+                            </div>
+                        </div>
+                        <p class="mb-0">"My students' test scores improved by 30% after we started using DECKIT for
+                            revision sessions."</p>
+                        <div class="stars mt-3">
+                            ★★★★★
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta py-5">
+        <div class="container text-center">
+            <div class="cta-box bg-white rounded-lg shadow-lg p-5" data-aos="zoom-in">
+                <h2 class="mb-4">Start Learning Smarter Today</h2>
+                <p class="lead mb-4">Join 100,000+ students – Forever free, no credit card needed</p>
+                <div class="cta-buttons">
+                    <a href="{% url 'home' %}" class="btn btn-primary btn-lg rounded-pill px-5 py-3 mr-3">
+                        Create Free Account
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AOS Animation Script -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: false,
+            offset: 150
+        });
+    </script>
+</body>
+
+</html>

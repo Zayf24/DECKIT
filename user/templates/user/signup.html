@@ -1,0 +1,228 @@
+{%load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --text-color: #2d3748;
+            --border-color: #cbd5e0;
+            --placeholder-color: #a0aec0;
+            --focus-color: #1C2341;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+        }
+
+        .form-outline {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .form-outline label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .form-outline input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-outline input:focus {
+            border-color: var(--focus-color);
+            box-shadow: 0 0 0 3px rgba(28, 35, 65, 0.1);
+            outline: none;
+        }
+        
+        .form-outline input::placeholder {
+            color: var(--placeholder-color);
+            opacity: 0.8;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(to right, #1C2341, #0A1128);
+            border: none;
+            color: white;
+            border-radius: 30px;
+            padding: 12px 35px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            color:white;
+        }
+
+        .card {
+            border-radius: 1.5rem;
+            background-color: #f8f9fa;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .image-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 2rem;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .alert-danger {
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid #e53e3e;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                margin: 1rem;
+            }
+
+            .card-body {
+                padding: 1.5rem;
+            }
+
+            .image-container {
+                padding: 4rem 2rem;
+            }
+
+            .btn-gradient {
+                padding: 12px 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .card-body {
+                padding: 1rem;
+            }
+            
+            .form-outline input {
+                padding: 0.65rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="d-flex align-items-center py-5"
+        style="background: linear-gradient(to right, #0A1128, #1C2341); min-height: 100vh;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <div class="card border-0">
+                        <div class="row g-0">
+                            <!-- Image Column -->
+                            <div class="col-md-5 d-none d-md-flex">
+                                <div class="image-container">
+                                    <img src="{% static 'images/3441220-removebg.png' %}" alt="Signup illustration" 
+                                         class="img-fluid">
+                                </div>
+                            </div>
+
+                            <!-- Form Column -->
+                            <div class="col-md-7">
+                                <div class="card-body p-lg-5 p-md-4">
+                                    <form action="{% url 'signup' %}" method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="text-center mb-4">
+                                            <img src="{% static 'images/logo.png' %}" style="width: 80px; margin-bottom: 1rem;">
+                                            <h1 class="h2 fw-bold mb-0">DECKIT</h1>
+                                        </div>
+
+                                        <!-- Error Messages -->
+                                        {% if form.errors or messages %}
+                                            <div class="alert alert-danger animate__animated animate__shakeX">
+                                                {% for field, errors in form.errors.items %}
+                                                    {% for error in errors %}
+                                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                                            <i class="fas fa-exclamation-circle"></i>
+                                                            <span>{{ error }}</span>
+                                                        </div>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                                {% for message in messages %}
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <i class="fas fa-info-circle"></i>
+                                                        <span>{{ message }}</span>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+
+                                        <!-- Form Fields -->
+                                        <div class="row">
+                                            {% for field in form %}
+                                                <div class="col-12">
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="{{ field.id_for_label }}">
+                                                            {{ field.label }}
+                                                        </label>
+                                                        {{ field }}
+                                                        {% if field.help_text %}
+                                                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+
+                                        <!-- Submit Button -->
+                                        <div class="d-grid gap-2 pt-3">
+                                            <button class="btn btn-gradient" type="submit">
+                                                Create Account
+                                            </button>
+                                        </div>
+
+                                        <!-- Login Link -->
+                                        <p class="text-center mt-4 mb-0">
+                                            Already have an account? 
+                                            <a href="{% url 'login' %}" class="text-decoration-none fw-bold" style="color: #1C2341;">
+                                                Login here
+                                            </a>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-kit-code.js"></script>
+</body>
+</html>

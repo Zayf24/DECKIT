@@ -1,0 +1,510 @@
+/* Updated CSS */
+:root {
+    --primary: #4F46E5;
+    --secondary: #F59E0B;
+    --dark: #1E293B;
+}
+
+body {
+    background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+}
+
+.top_container {
+    position: relative;
+    overflow: hidden;
+}
+
+.top_container::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, #0A1128, #1C2341);
+    background-size: 100% 100%;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.navbar-brand {
+    color: white;
+    text-decoration: none !important;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    margin-right: 10px;
+}
+
+.navbar-nav .nav-link {
+    font-family: 'Outfit', sans-serif;
+    font-weight: bold;
+    padding: 5px 20px;
+    color: white;
+    background-color: #007BFF;
+    border-radius: 30px;
+    margin: 0 5px;
+    text-decoration: none;
+}
+
+/* Mobile Responsiveness */
+.navbar-toggler {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.toggler-icon {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+.hero-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 90px;
+    padding-bottom: 150px;
+}
+
+.hero_detail-box {
+    width: 40%;
+    color: #fefeff;
+}
+
+.hero_detail-box h1 {
+    font-size: 40px;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.hero_detail-box p {
+    font-family: 'Merriweather', serif;
+    font-size: 20px;
+    margin-bottom: 35px;
+}
+
+.hero-button a {
+    font-family: 'Outfit', sans-serif;
+    font-weight: bold;
+    font-size: larger;
+    padding: 10px 20px;
+    color: white;
+    background-color: #007BFF;
+    border-radius: 30px;
+    text-decoration: none;
+}
+
+.hero-button a:hover {
+    background-color: #0056b3;
+}
+
+.hero_img-container {
+    width: 50%;
+}
+
+.hero_img-container img {
+    width: 100%;
+}
+
+.intro-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.intro_detail-box {
+    width: 40%;
+    text-align: center;
+    color: #000000;
+}
+
+.intro_detail-box h1 {
+    font-size: 40px;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.intro_detail-box p {
+    font-family: 'Merriweather', serif;
+    font-size: 20px;
+    margin-bottom: 35px;
+}
+
+.intro_img-container {
+    width: 50%;
+}
+
+.intro_img-container img {
+    width: 90%;
+}
+
+.intro_button {
+    display: flex;
+    justify-content: center;
+    /* Centers horizontally */
+    align-items: center;
+    width: 100%;
+    /* Allows full-width centering */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.intro_button a {
+    font-size: 25px;
+    display: inline-block;
+    padding: 20px 40px;
+    color: white;
+    background-color: #007BFF;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Outfit', sans-serif;
+}
+
+
+.intro_button a:hover {
+    background-color: #0056b3;
+}
+
+.steps-section {
+    background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+    padding: 100px 0;
+}
+
+.step-number {
+    font-family: 'outfit';
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+    background: var(--primary);
+    border: 3px solid white;
+    margin: -45px auto 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2);
+}
+
+.step-card {
+    background: white;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Testimonials Section */
+.testimonials {
+    font-family: 'outfit';
+    background: linear-gradient(135deg, #1C2341 0%, #0A1128 100%);
+    color: white;
+    padding: 100px 0;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.stars {
+    color: var(--secondary);
+    font-size: 1.2rem;
+}
+
+/* Final CTA Section */
+.final-cta {
+    background: linear-gradient(135deg, #4F46E5 0%, #6D63FF 100%);
+    padding: 100px 0;
+}
+
+.cta-box {
+    font-family: 'outfit';
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-box:before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: rgba(79, 70, 229, 0.1);
+    border-radius: 50%;
+}
+
+.cta-box h2 {
+    color: var(--dark);
+}
+
+.cta-box p {
+    color: #666;
+}
+
+.btn-primary {
+    background: var(--primary);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #3b37b5;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+}
+
+.btn-outline-dark {
+    border: 2px solid var(--dark);
+    color: var(--dark);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-dark:hover {
+    background: var(--dark);
+    color: white;
+}
+
+/* Touch Optimization */
+button,
+a {
+    touch-action: manipulation;
+}
+
+/* Image Responsiveness */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Mobile First Approach */
+@media (max-width: 992px) {
+
+    /* Navbar */
+    .navbar-toggler {
+        display: block;
+    }
+
+    .navbar-collapse {
+        display: none !important;
+        width: 100%;
+        text-align: right;
+    }
+
+    .navbar-collapse.show {
+        display: flex !important;
+        flex-direction: column;
+        padding: 15px 0;
+    }
+
+    .navbar-nav {
+        flex-direction: column !important;
+        width: 100%;
+    }
+
+    .nav-link {
+        margin: 5px 0 !important;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-brand img {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Hero Section */
+    .hero-container {
+        flex-direction: column;
+        padding: 60px 0;
+        text-align: center;
+    }
+
+    .hero_detail-box,
+    .hero_img-container {
+        width: 100% !important;
+    }
+
+    .hero_detail-box h1 {
+        font-size: 32px;
+        line-height: 1.3;
+    }
+
+    .hero_detail-box p {
+        font-size: 18px;
+    }
+
+    .hero_img-container {
+        margin-top: 40px;
+    }
+
+    .trust-badge {
+        flex-direction: column;
+    }
+
+    /* Intro Section */
+    .intro-container {
+        flex-direction: column !important;
+        text-align: center;
+        padding: 40px 0;
+    }
+
+    .intro_detail-box,
+    .intro_img-container {
+        width: 100% !important;
+    }
+
+    .intro_img-container {
+        order: -1;
+        margin-bottom: 30px;
+    }
+
+    .intro_detail-box h1 {
+        font-size: 28px;
+    }
+
+    /* Steps Section */
+    .steps-section {
+        padding: 60px 0;
+    }
+
+    .step-card {
+        margin: 20px 0;
+    }
+
+    /* Testimonials */
+    .testimonials {
+        padding: 60px 0;
+    }
+
+    /* CTA Section */
+    .final-cta {
+        padding: 60px 0;
+    }
+
+    .cta-box {
+        padding: 30px !important;
+    }
+
+    .cta-box:before {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* General Adjustments */
+    h1 {
+        font-size: 28px !important;
+    }
+
+    h2 {
+        font-size: 24px !important;
+    }
+
+    p {
+        font-size: 16px !important;
+    }
+
+    /* Buttons */
+    .btn-lg {
+        padding: 12px 25px !important;
+        font-size: 16px !important;
+        width: 100%;
+        margin: 5px 0 !important;
+    }
+
+    /* Hero Section */
+    .hero_detail-box h1 {
+        font-size: 28px !important;
+    }
+
+    /* Testimonials */
+    .testimonial-card {
+        margin-bottom: 20px;
+    }
+
+    /* CTA Section */
+    .cta-box h2 {
+        font-size: 24px !important;
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* Navbar */
+    .navbar-brand img {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Hero Section */
+    .hero-container {
+        padding: 40px 0;
+    }
+
+    .trust-badge img {
+        width: 20px;
+    }
+
+    /* Steps Section */
+    .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        margin-top: -35px;
+    }
+
+    /* Testimonials */
+    .testimonial-card {
+        padding: 20px;
+    }
+
+    .testimonial-card img {
+        width: 40px;
+    }
+}
