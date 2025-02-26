@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from flashcard.models import Deck
 
 # Create your views here.
 def signup(request):
@@ -45,12 +47,27 @@ def user_login(request):
     
     return render(request, 'user/login.html', {'form': form})
 
+@login_required
 def user_home(request):
     # Only authenticated users should access this page
+    recent_decks = None
     if request.user.is_authenticated:
-        return render(request, 'user/home.html')
-    else:
-        return redirect('login')
+        recent_decks = Deck.objects.filter(
+            user=request.user,
+            last_accessed__isnull=False
+        ).order_by('-last_accessed')[:3]
+
+        popular_decks = Deck.objects.all().order_by('-views')[:4]
+    return render(request, 'user/home.html', {'recent_decks': recent_decks,'popular_decks':popular_decks})
     
 def hero(request):
     return render(request, 'user/hero.html')
+
+@login_required
+def profile(request):
+    # The user is available in request.user
+    return render(request, 'user/profile.html', {'user': request.user})
+
+def logout_view(request):
+    logout(request)
+    return redirect('hero') 

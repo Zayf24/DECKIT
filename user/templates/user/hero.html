@@ -32,27 +32,25 @@
 
 <body>
     <div class="top_container">
-        <nav class="navbar">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'hero' %}">
-                <img src="{% static 'images/logo.png' %}" width="70" height="70" class="d-inline-block align-self-center" alt="logo">
-                DECKIT
+              <img src="{% static 'images/logo.png' %}" width="70" height="70" class="d-inline-block align-self-center" alt="logo">
+              <span class="brand-text">DECKIT</span>
             </a>
-
+            {% comment %} <div class="collapse navbar-collapse" id="navbarLinks">
+              <div class="navbar-nav ms-auto">
+                
+              </div>
+            </div> {% endcomment %}
+          
             <!-- Mobile Toggle Button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks">
-                <span class="toggler-icon"></span>
-                <span class="toggler-icon"></span>
-                <span class="toggler-icon"></span>
-            </button>
-
+          
             <!-- Navbar Links -->
-            <div class="collapse navbar-collapse" id="navbarLinks">
-                <div class="navbar-nav ml-auto d-flex flex-row flex-lg-row">
-                    <a class="nav-link btn btn-primary rounded-pill mx-2" href="{% url 'login' %}">Login</a>
-                    <a class="nav-link btn btn-primary rounded-pill mx-2" href="{% url 'signup' %}">Signup</a>
-                </div>
-            </div>
-        </nav>
+            
+        </div>
+          </nav>
+          
 
         <section class="hero_section">
             <div class="hero-container container">
@@ -170,7 +168,7 @@
                         <div class="d-flex align-items-center mb-3">
                             <img src="{% static 'images\client.png' %}" alt="Sarah" class="rounded-circle mr-3" width="60">
                             <div>
-                                <h4 class="mb-0">Sarah</h4>
+                                <h4 class="mb-0">Dev Shah</h4>
                                 <p class="text-muted mb-0">Medical Student</p>
                             </div>
                         </div>

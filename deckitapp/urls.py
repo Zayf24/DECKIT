@@ -19,13 +19,20 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 import user.views as user_views
+import flashcard.views as flashcard_views
 
 urlpatterns = [
     path('',user_views.hero,name='hero'),
     path('admin/', admin.site.urls),
     path('signup/',user_views.signup,name='signup'),
     path('login/',user_views.user_login,name='login'),
+    path('profile/', user_views.profile, name='profile'),
     path('home/',user_views.user_home,name='home'),
+    path('create/', flashcard_views.create_deck, name='create_deck'),
+    path('decks/', flashcard_views.deck_list, name='deck_list'),
+    path('deck/<int:deck_id>/', flashcard_views.deck_detail, name='deck_detail'),
+    path('search/', flashcard_views.search_decks, name='search_decks'),
+    path('logout/',user_views.logout_view, name='logout'),
 ] 
 
 urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

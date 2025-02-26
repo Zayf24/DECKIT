@@ -1,0 +1,85 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block title %}Search Results{% endblock title %}
+
+{% block css %}
+<style>
+  .search-results-container {
+    margin-top: 3rem;
+  }
+  .search-results-container h2 {
+    font-size: 2.5rem;
+    color: #1c2341;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  /* Card Styling */
+  .search-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+  }
+  .search-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  .search-card .card-body {
+    padding: 1.5rem;
+  }
+  .search-card .card-title {
+    font-size: 1.75rem;
+    color: #1c2341;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  .search-card .card-text {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  .search-card .btn {
+    border-radius: 30px;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .search-card .btn:hover {
+    transform: scale(1.05);
+  }
+  @media (max-width: 768px) {
+    .search-card .card-title {
+      font-size: 1.5rem;
+    }
+    .search-card .card-text {
+      font-size: 1rem;
+    }
+  }
+</style>
+{% endblock css %}
+
+{% block content %}
+<div class="container search-results-container">
+  <h2 data-aos="fade-up">Search Results for "{{ query }}"</h2>
+  {% if decks %}
+  <div class="row">
+    {% for deck in decks %}
+      <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:'100' }}">
+        <div class="card search-card">
+          <div class="card-body">
+            <h5 class="card-title">{{ deck.name }}</h5>
+            <p class="card-text">Theme: {{ deck.get_theme_display }}</p>
+            <a href="{% url 'deck_detail' deck.id %}" class="btn btn-outline-primary">View Deck</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% else %}
+    <p class="text-center" data-aos="fade-up">No decks found matching your search.</p>
+  {% endif %}
+</div>
+{% endblock content %}

@@ -1,0 +1,222 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block title %}Deck Detail - {{ deck.name }}{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="display-5 fw-bold">{{ deck.name }}</h1>
+    <a href="{% url 'deck_list' %}" class="btn btn-outline-secondary">
+      <i class="fas fa-arrow-left me-2"></i>Back to Decks
+    </a>
+  </div>
+
+  {% if current_card %}
+  <div class="flashcard-container">
+    <!-- Navigation Controls -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <a href="?card={{ current_index|add:-1 }}" class="btn btn-lg nav-btn prev-btn"
+         style="background: linear-gradient(90deg, #0A1128, #1C2341); color: white; border: none; border-radius: 8px;">
+          <i class="fas fa-chevron-left"></i>
+      </a>
+  
+      <a href="?card={{ next_index }}" class="btn btn-lg nav-btn next-btn"
+         style="background: linear-gradient(90deg, #0A1128, #1C2341); color: white; border: none; border-radius: 8px;">
+          <i class="fas fa-chevron-right"></i>
+      </a>
+  </div>
+
+    <!-- Flashcard -->
+    <div id="flashcard-viewer" class="d-flex justify-content-center align-items-center">
+      <div class="flashcard-card {{ deck.theme }}" id="flashcard-card">
+        <div class="card-inner">
+          <!-- Front Side (Title) -->
+          <div class="card-face card-front">
+            <div class="card-content">
+              <h3 class="card-title">{{ current_card.title }}</h3>
+              <div class="flip-instruction">
+                <i class="fas fa-sync-alt"></i>
+                <small>Click to flip</small>
+              </div>
+            </div>
+          </div>
+          <!-- Back Side (Description) -->
+          <div class="card-face card-back">
+            <div class="card-content">
+              <p class="card-description">{{ current_card.description }}</p>
+              <div class="flip-instruction">
+                <i class="fas fa-sync-alt"></i>
+                <small>Click to flip</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Position -->
+    <p class="text-center mt-4 text-muted">
+      Card {{ current_index|add:"1" }} of {{ flashcards|length }}
+    </p>
+  </div>
+  {% else %}
+  <div class="text-center py-5">
+    <div class="empty-state">
+      <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+      <p class="lead">No flashcards in this deck yet</p>
+      <a href="{% url 'create_deck' %}" class="btn btn-primary">
+        <i class="fas fa-plus me-2"></i>Add Flashcards
+      </a>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<style>
+.flashcard-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.flashcard-card {
+  width: 100%;
+  max-width: 400px;
+  height: 300px;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease-in-out;
+}
+
+.flashcard-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Ensures only one side is visible at a time */
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  backface-visibility: hidden; /* Ensures proper flipping */
+}
+
+/* Front Card */
+.card-front {
+  background: #ffffff;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+/* Back Card */
+.card-back {
+  background: #f8f9fa;
+  color: #111;
+  transform: rotateY(180deg);
+}
+
+.card-content {
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.card-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+}
+
+.card-description {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.flip-instruction {
+  position: absolute;
+  bottom: 1rem;
+  width: 100%;
+  text-align: center;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.flashcard-card:hover .flip-instruction {
+  opacity: 1;
+}
+
+.nav-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Theme Styles */
+.sunrise .card-face {
+  background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+  color: white;
+}
+
+.tropical .card-face {
+  background: linear-gradient(135deg, #00c9a7, #92fe9d);
+  color: white;
+}
+
+.ocean .card-face {
+  background: linear-gradient(135deg, #2193b0, #6dd5ed);
+  color: white;
+}
+
+.lavender .card-face {
+  background: linear-gradient(135deg, #9b59b6, #e74c3c);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .flashcard-card {
+    height: 300px;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+  }
+  
+  .card-description {
+    font-size: 1rem;
+  }
+  
+  .nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const card = document.getElementById("flashcard-card");
+  
+    card.addEventListener("click", function () {
+      card.classList.toggle("flipped");
+    });
+  });
+</script>
+{% endblock content %}

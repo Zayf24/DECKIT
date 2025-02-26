@@ -1,0 +1,60 @@
+{% extends "user/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="d-flex align-items-center py-5"
+    style="background: linear-gradient(to right, #0A1128, #1C2341); min-height: 100vh;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card border-0 shadow-lg">
+                    <div class="card-body p-lg-5 p-md-4">
+                        <h2 class="text-center mb-4">Create a New Flashcard</h2>
+                        
+                        <!-- Display error messages -->
+                        {% if form.errors %}
+                            <div class="alert alert-danger animate__animated animate__shakeX">
+                                <strong>Error:</strong> Please correct the errors below.
+                            </div>
+                        {% endif %}
+
+                        <!-- Flashcard Creation Form -->
+                        <form method="POST" action="{% url 'create_flashcard' %}">
+                            {% csrf_token %}
+                            
+                            <!-- Title Field -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label fw-bold" for="{{ form.title.id_for_label }}">Title</label>
+                                {{ form.title }}
+                                {% if form.title.errors %}
+                                    <div class="text-danger mt-2">
+                                        {{ form.title.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Description Field -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label fw-bold" for="{{ form.description.id_for_label }}">Description</label>
+                                {{ form.description }}
+                                {% if form.description.errors %}
+                                    <div class="text-danger mt-2">
+                                        {{ form.description.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="d-grid gap-2 pt-3">
+                                <button class="btn btn-gradient" type="submit">
+                                    Create Flashcard
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

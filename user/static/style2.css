@@ -30,55 +30,72 @@ body {
 }
 
 /* Navbar */
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-}
-
-.navbar-brand {
-    color: white;
+  }
+  
+  /* Navbar Brand */
+  .navbar-brand {
+    color: white !important;
     text-decoration: none !important;
     font-family: 'Outfit', sans-serif;
     font-size: 1.5rem;
     font-weight: 800;
     display: flex;
     align-items: center;
-}
-
-.navbar-brand img {
+  }
+  .brand-text {
+    color: white !important;
+  }
+  .navbar-brand:hover .brand-text {
+    color: white !important;
+  }
+  .navbar-brand img {
     margin-right: 10px;
-}
-
-.navbar-nav .nav-link {
+  }
+  
+  /* Navbar Links */
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .navbar-nav .nav-link {
     font-family: 'Outfit', sans-serif;
     font-weight: bold;
     padding: 5px 20px;
-    color: white;
+    color: white !important;
     background-color: #007BFF;
     border-radius: 30px;
     margin: 0 5px;
     text-decoration: none;
-}
-
-/* Mobile Responsiveness */
-.navbar-toggler {
-    display: none;
+    display: inline-block;
+  }
+  .navbar-nav .nav-link:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Mobile Toggle Button */
+  .navbar-toggler {
+    display: block;
     background: none;
     border: none;
     padding: 8px;
     cursor: pointer;
-}
-
-.toggler-icon {
+  }
+  .toggler-icon {
     display: block;
     width: 25px;
     height: 3px;
     background: white;
     margin: 5px 0;
     transition: all 0.3s ease;
-}
+  }
+
 
 .hero-container {
     display: flex;
@@ -325,37 +342,20 @@ img {
 @media (max-width: 992px) {
 
     /* Navbar */
-    .navbar-toggler {
-        display: block;
-    }
-
-    .navbar-collapse {
-        display: none !important;
-        width: 100%;
-        text-align: right;
-    }
-
-    .navbar-collapse.show {
-        display: flex !important;
-        flex-direction: column;
-        padding: 15px 0;
-    }
-
-    .navbar-nav {
-        flex-direction: column !important;
-        width: 100%;
-    }
-
-    .nav-link {
-        margin: 5px 0 !important;
-        width: 100%;
+    .navbar-collapse.show .navbar-nav {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+      }
+      .navbar-nav .nav-link {
+        width: auto;
+        margin: 0 5px;
         text-align: center;
-    }
-
-    .navbar-brand img {
+      }
+      .navbar-brand img {
         width: 50px;
         height: 50px;
-    }
+      }
 
     /* Hero Section */
     .hero-container {

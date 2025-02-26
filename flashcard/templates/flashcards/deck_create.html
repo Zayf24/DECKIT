@@ -1,0 +1,183 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block title %}Create Flashcard Deck{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="card shadow-sm rounded">
+    <div class="card-header text-white" style="background: linear-gradient(90deg, #0a1128, #1c2341);">
+      <h3 class="mb-0">Create New Flashcard Deck</h3>
+    </div>
+    <div class="card-body">
+      <form method="POST" action="">
+        {% csrf_token %}
+        <!-- Deck Information Section -->
+        <div class="mb-4">
+          <h4 class="mb-3">Deck Information</h4>
+          <div class="mb-3">
+            <label for="{{ deck_form.name.id_for_label }}" class="form-label">Deck Name</label>
+            {{ deck_form.name }}
+            {% for error in deck_form.name.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+          </div>
+          <div class="mb-3">
+            <label for="{{ deck_form.theme.id_for_label }}" class="form-label">Theme</label>
+            {{ deck_form.theme }}
+            {% for error in deck_form.theme.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+          </div>
+        </div>
+        <hr>
+        <!-- Flashcards Section -->
+        <div class="mb-4">
+          <h4 class="mb-3">Flashcards</h4>
+          <!-- Hidden field to track the number of flashcards -->
+          <input type="hidden" id="flashcard_total" name="flashcard_total" value="4">
+          <div id="flashcards-container">
+            <!-- Render 4 default flashcard input groups -->
+            {% for i in "0123"|make_list %}
+            <div class="flashcard-item border rounded p-3 mb-3" data-index="{{ forloop.counter0 }}">
+              <div class="mb-3">
+                <label class="form-label" for="id_flashcard_title_{{ forloop.counter0 }}">Flashcard Title</label>
+                <input type="text" name="flashcard_title_{{ forloop.counter0 }}" id="id_flashcard_title_{{ forloop.counter0 }}" class="form-control" placeholder="Flashcard Title">
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="id_flashcard_description_{{ forloop.counter0 }}">Flashcard Description</label>
+                <textarea name="flashcard_description_{{ forloop.counter0 }}" id="id_flashcard_description_{{ forloop.counter0 }}" class="form-control" placeholder="Flashcard Description" rows="3"></textarea>
+              </div>
+              <button type="button" class="btn btn-danger btn-sm remove-flashcard">Remove</button>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="text-end">
+            <button type="button" id="add-flashcard" class="btn btn-secondary">Add Flashcard</button>
+          </div>
+        </div>
+        <!-- Submit Button -->
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary btn-lg" id="decksubmit" onclick="return validateDeck()">Create Deck</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Styles for Interactive Flashcard Items -->
+<style>
+  .flashcard-item {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .flashcard-item.fade-out {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+</style>
+
+<!-- Vanilla JavaScript for dynamic add/remove functionality -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const addButton = document.getElementById("add-flashcard");
+    const container = document.getElementById("flashcards-container");
+    const totalInput = document.getElementById("flashcard_total");
+    const form = document.querySelector("form");
+
+    const maxForms = 10;
+
+    function updateFlashcardCount() {
+        totalInput.value = document.querySelectorAll('.flashcard-item').length;
+    }
+
+    function fadeIn(element) {
+        element.style.opacity = 0;
+        requestAnimationFrame(() => {
+            element.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+            element.style.opacity = 1;
+            element.style.transform = "scale(1)";
+        });
+    }
+
+    addButton.addEventListener("click", function () {
+        let totalForms = document.querySelectorAll('.flashcard-item').length;
+        if (totalForms < maxForms) {
+            const newDiv = document.createElement("div");
+            newDiv.classList.add("flashcard-item", "border", "rounded", "p-3", "mb-3");
+            newDiv.innerHTML = `
+                <div class="mb-3">
+                    <label class="form-label">Flashcard Title</label>
+                    <input type="text" name="flashcard_title_${totalForms}" class="form-control flashcard-title" placeholder="Flashcard Title">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Flashcard Description</label>
+                    <textarea name="flashcard_description_${totalForms}" class="form-control flashcard-description" placeholder="Flashcard Description" rows="3"></textarea>
+                </div>
+                <button type="button" class="btn btn-danger btn-sm remove-flashcard">Remove</button>
+            `;
+            container.appendChild(newDiv);
+            fadeIn(newDiv);
+            updateFlashcardCount();
+        } else {
+            alert("Maximum 10 flashcards allowed.");
+        }
+    });
+
+    container.addEventListener("click", function (e) {
+        if (e.target.classList.contains("remove-flashcard")) {
+            const flashcardItem = e.target.closest(".flashcard-item");
+            if (flashcardItem) {
+                flashcardItem.classList.add("fade-out");
+                setTimeout(() => {
+                    flashcardItem.remove();
+                    updateFlashcardCount();
+                }, 300);
+            }
+        }
+    });
+
+    form.addEventListener("submit", function (event) {
+        const deckName = document.querySelector("input[name='name']");
+        const flashcards = document.querySelectorAll('.flashcard-item');
+
+        if (!deckName || deckName.value.trim() === "") {
+            alert("Deck name is required.");
+            event.preventDefault();
+            return;
+        }
+
+        if (flashcards.length === 0) {
+            alert("Deck can't be empty! Add at least one flashcard.");
+            event.preventDefault();
+            return;
+        }
+
+        let hasValidFlashcard = false;
+        for (let flashcard of flashcards) {
+            const title = flashcard.querySelector(".flashcard-title").value.trim();
+            const description = flashcard.querySelector(".flashcard-description").value.trim();
+
+            if (title && description) {
+                hasValidFlashcard = true;
+                break;  // Stop checking further once we find a valid one
+            }
+        }
+
+        if (!hasValidFlashcard) {
+            alert("Deck can't be empty! Add at least one valid flashcard.");
+            event.preventDefault();
+        }
+    });
+});
+
+function validateDeck() {
+  const flashcards = document.querySelectorAll('.flashcard-item');
+  
+  if (flashcards.length === 0) {
+      alert("Deck can't be empty! Add at least one flashcard.");
+      return false;  // Prevents form submission
+  }
+
+  return true;  // Allows form submission
+}
+</script>
+{% endblock content %}

@@ -1,0 +1,104 @@
+{% extends "user/base.html" %}
+{% load static %}
+
+{% block css %}
+<style>
+  /* Section Background */
+  .flashcards-section {
+    background: linear-gradient(to right, #0A1128, #1C2341);
+    min-height: 100vh;
+    padding: 80px 0;
+  }
+  /* Card Container */
+  .flashcards-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background: #fff;
+  }
+  .flashcards-card .card-body {
+    padding: 3rem;
+  }
+  /* Title */
+  .flashcards-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1c2341;
+  }
+  /* Flashcard List Item */
+  .flashcard-item {
+    border: none;
+    border-radius: 8px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  .flashcard-item:hover {
+    background-color: #f0f8ff;
+    transform: translateY(-3px);
+  }
+  .flashcard-item h5 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1c2341;
+  }
+  .flashcard-item p {
+    font-size: 1.1rem;
+    color: #333;
+  }
+  .flashcard-item small {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  /* Gradient Button */
+  .btn-gradient {
+    background: linear-gradient(to right, #1c2341, #0a1128);
+    border: none;
+    color: #fff;
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  .btn-gradient:hover {
+    transform: scale(1.05);
+    background: linear-gradient(to right, #0a1128, #1c2341);
+  }
+</style>
+{% endblock css %}
+
+{% block content %}
+<section class="flashcards-section d-flex align-items-center">
+  <div class="container">
+    <div class="row justify-content-center" data-aos="fade-up">
+      <div class="col-lg-10">
+        <div class="card flashcards-card shadow-lg">
+          <div class="card-body">
+            <h2 class="text-center flashcards-title mb-4">Your Flashcards</h2>
+            
+            <!-- Flashcard List -->
+            <div class="list-group">
+              {% for flashcard in flashcards %}
+                <div class="list-group-item flashcard-item mb-3" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'100' }}">
+                  <h5>{{ flashcard.title }}</h5>
+                  <p>{{ flashcard.description }}</p>
+                  <small class="text-muted">Created on: {{ flashcard.created_at|date:"M d, Y" }}</small>
+                </div>
+              {% empty %}
+                <p class="text-center">No flashcards found. Create one now!</p>
+              {% endfor %}
+            </div>
+
+            <!-- Create Flashcard Button -->
+            <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="300">
+              <a href="{% url 'create_flashcard' %}" class="btn btn-gradient">
+                Create New Flashcard
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

@@ -1,322 +1,330 @@
 {% extends 'user/base.html' %}
 {% load static %}
-{% block css%}
+{% block css %}
 body {
-    background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
-    font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+  font-family: 'Outfit', sans-serif;
 }
 
-
-/* Hero Section */
+/* HERO SECTION */
 .hero-section {
-    background-image: linear-gradient(to right, #0a1128, #1c2341);
-    padding: 100px 0;
-    position: relative;
-    overflow: hidden;
+  background-image: linear-gradient(to right, #0a1128, #1c2341);
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
 }
-
 .hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('https://picsum.photos/1200/400') no-repeat center center;
-    background-size: cover;
-    opacity: 0.1;
-    z-index: 0;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static 'images\heroimage.jpg'%}') no-repeat center center;
+  background-size: cover;
+  opacity: 0.1;
+  z-index: 0;
 }
-
 .hero-section .container {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
-
-/* Card & Button Styles */
-.card {
-    border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
-}
-
-.create-card,
-.import-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.create-card:hover,
-.import-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.btn-primary {
-    background-color: #1c2341;
-    border-color: #1c2341;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.btn-primary:hover {
-    background-color: #0a1128;
-    border-color: #0a1128;
-}
-
-.btn-secondary {
-    background-color: #4a5568;
-    border-color: #4a5568;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.btn-secondary:hover {
-    background-color: #2d3748;
-    border-color: #2d3748;
-}
-
-/* Top Creators */
-.top-creators img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.top-creators img:hover {
-    transform: scale(1.1);
-}
-
-
-
-/* Improved Styles */
 .hero-section h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
-
+.hero-section p.lead {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
 .hero-section .btn-light {
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 0.75rem 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.75rem 2rem;
+  transition: transform 0.3s ease;
+}
+.hero-section .btn-light:hover {
+  transform: scale(1.05);
 }
 
+/* SECTION TITLES */
 .section-title {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #1c2341;
 }
-
 .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 50px;
-    height: 3px;
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: #1c2341;
+}
+
+/* CARD & BUTTON STYLES */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+}
+.btn-primary {
+  background-color: #1c2341;
+  border-color: #1c2341;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: #0a1128;
+  transform: scale(1.02);
+}
+.btn-outline-primary {
+  border-color: #1c2341;
+  color: #1c2341;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn-outline-primary:hover {
+  background-color: #1c2341;
+  color: #fff;
+  transform: scale(1.02);
+}
+.btn-outline-secondary {
+  border-color: #888;
+  color: #888;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn-outline-secondary:hover {
+  background-color: #888;
+  color: #fff;
+  transform: scale(1.02);
+}
+
+/* RECENT ACTIVITIES & POPULAR DECKS */
+.recent-activities .card,
+.popular-decks .card {
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.recent-activities .card:hover,
+.popular-decks .card:hover {
+  transform: translateY(-3px);
+}
+
+.recent-btn, .popular-btn {
+    border: 2px solid #1c2341;
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    border-radius: 4px;
+    outline:none;
+  }
+  .recent-btn:hover, .popular-btn:hover {
     background-color: #1c2341;
+    color: #fff;
+    transform: scale(1.05);
+    outline: none;
+    box-shadow: none;
+
+  }
+
+/* TOP CREATORS */
+.top-creators img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+.top-creators img:hover {
+  transform: scale(1.1);
 }
 
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
+/* STUDY TIP */
+.study-tip-section {
+  background: #f7f9fc;
+  padding: 60px 0;
+}
+.study-tip-card {
+  border: none;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.study-tip-card .card-header {
+  background: linear-gradient(135deg, #0a1128, #1c2341);
+}
+.study-tip-card .card-body {
+  background: #fff;
 }
 
-.quiz-section .card {
-    background: linear-gradient(135deg, #f6f9ff 0%, #ffffff 100%);
-}
-
+/* RESPONSIVE ADJUSTMENTS */
 @media (max-width: 768px) {
-    .hero-section {
-        padding: 80px 0;
-    }
-
-    .hero-section h1 {
-        font-size: 2.5rem;
-    }
+  .hero-section {
+    padding: 80px 0;
+  }
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  .section-title {
+    font-size: 1.75rem;
+  }
 }
-{% endblock css%}
+{% endblock css %}
+
 {% block content %}
-<header class="hero-section text-white">
-    <div class="container text-center">
-        <h1 class="display-4 mb-3" data-aos="fade-down" data-aos-delay="100">Welcome to FlashMaster!</h1>
-        <p class="lead mb-4" data-aos="fade-up" data-aos-delay="200">Boost your learning with interactive flashcards
-            and quizzes.</p>
-        <a href="#" class="btn btn-light btn-lg" data-aos="fade-up" data-aos-delay="300">Get Started</a>
-    </div>
+<!-- Hero Section -->
+<header class="hero-section text-white" data-aos="fade-down">
+  <div class="container text-center">
+    <h1 class="display-4 mb-3">Welcome to DECKIT!</h1>
+    <p class="lead mb-4">Transform your study sessions with interactive flashcards.Learn smarter, achieve more.</p>
+    <a href="{% url 'create_deck' %}" class="btn btn-light btn-lg" data-aos="fade-up" data-aos-delay="300">Get Started</a>
+  </div>
 </header>
 
 <!-- Main Content -->
 <main class="container my-5">
-    <!-- Create Flashcards Section -->
-    <section class="create-flashcards mb-5" data-aos="fade-up">
-        <h2 class="section-title">Create Your Own Flashcards</h2>
-        <div class="row">
-            <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="100">
-                <div class="card create-card h-100">
-                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                        <i class="fas fa-plus-circle fa-3x mb-3 text-primary"></i>
-                        <h3 class="card-title">New Flashcard Set</h3>
-                        <p class="card-text text-center">Start creating your own custom flashcard set now!</p>
-                        <a href="#" class="btn btn-primary mt-3">Create Flashcards</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="200">
-                <div class="card import-card h-100">
-                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                        <i class="fas fa-file-import fa-3x mb-3 text-secondary"></i>
-                        <h3 class="card-title">Import Flashcards</h3>
-                        <p class="card-text text-center">Import flashcards from various formats or other platforms.
-                        </p>
-                        <a href="#" class="btn btn-secondary mt-3">Import Now</a>
-                    </div>
-                </div>
-            </div>
+  <!-- Manage Your Flashcards Section -->
+  <section class="create-flashcards mb-5" data-aos="fade-up">
+    <h2 class="section-title">Manage Your Flashcards</h2>
+    <div class="row">
+      <!-- Create New Flashcard Set -->
+      <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="100">
+        <div class="card create-card h-100">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-plus-circle fa-3x mb-3 text-primary"></i>
+            <h3 class="card-title">New Flashcard Set</h3>
+            <p class="card-text text-center">Build your own set of flashcards to power up your study sessions.</p>
+            <a href="{% url 'create_deck' %}" class="btn btn-primary mt-3">Create Now</a>
+          </div>
         </div>
-    </section>
-
-    <!-- Recent Activities Section -->
-    <section class="recent-activities mb-5" data-aos="fade-up">
-        <h2 class="section-title">Recent Activities</h2>
-        <div class="row">
-            <div class="col-md-4 mb-3" data-aos="flip-left" data-aos-delay="100">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Spanish Vocabulary</h5>
-                        <p class="card-text">Last studied: 2 hours ago</p>
-                        <a href="#" class="btn btn-outline-primary">Continue</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3" data-aos="flip-left" data-aos-delay="200">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">World History</h5>
-                        <p class="card-text">Last studied: Yesterday</p>
-                        <a href="#" class="btn btn-outline-primary">Continue</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3" data-aos="flip-left" data-aos-delay="300">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Biology Terms</h5>
-                        <p class="card-text">Last studied: 3 days ago</p>
-                        <a href="#" class="btn btn-outline-primary">Continue</a>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <!-- View Your Flashcards -->
+      <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="card view-card h-100">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-eye fa-3x mb-3 text-primary"></i>
+            <h3 class="card-title">Review Your Flashcards</h3>
+            <p class="card-text text-center">Access and refresh all your flashcard decks at a glance.</p>
+            <a href="{% url 'deck_list' %}" class="btn btn-primary mt-3">View Decks</a>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Popular Flashcards Section -->
-    <section class="popular-flashcards mb-5" data-aos="fade-up">
-        <h2 class="section-title">Popular Flashcards</h2>
-        <div class="row">
-            <div class="col-md-3 mb-3" data-aos="zoom-in" data-aos-delay="100">
-                <div class="card">
-                    <img src="https://picsum.photos/seed/math/250/200" class="card-img-top" alt="Math Formulas">
-                    <div class="card-body">
-                        <h5 class="card-title">Math Formulas</h5>
-                        <p class="card-text"><small class="text-muted">1.2k students</small></p>
-                        <a href="#" class="btn btn-sm btn-outline-primary">Study Now</a>
-                    </div>
-                </div>
+  <!-- Recent Activities Section -->
+<!-- Recent Activities Section -->
+<section class="recent-activities mb-5" data-aos="fade-up">
+    <h2 class="section-title">Recent Activities</h2>
+    <div class="row">
+      {% if recent_decks and recent_decks.count %}
+        {% for deck in recent_decks %}
+          <div class="col-md-4 mb-3" data-aos="flip-left" data-aos-delay="{{ forloop.counter0|add:"100" }}">
+            <div class="card">
+              <div class="card-body text-center">
+                <h5 class="card-title">{{ deck.name }}</h5>
+                <p class="card-text">
+                  Last accessed: {{ deck.last_accessed|date:"M d, Y H:i" }}
+                </p>
+                <a href="{% url 'deck_detail' deck.id %}" class="btn recent-btn">Continue</a>
+              </div>
             </div>
-            <div class="col-md-3 mb-3" data-aos="zoom-in" data-aos-delay="200">
-                <div class="card">
-                    <img src="https://picsum.photos/seed/english/250/200" class="card-img-top"
-                        alt="English Grammar">
-                    <div class="card-body">
-                        <h5 class="card-title">English Grammar</h5>
-                        <p class="card-text"><small class="text-muted">980 students</small></p>
-                        <a href="#" class="btn btn-sm btn-outline-primary">Study Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3" data-aos="zoom-in" data-aos-delay="300">
-                <div class="card">
-                    <img src="https://picsum.photos/seed/chemistry/250/200" class="card-img-top"
-                        alt="Chemistry Elements">
-                    <div class="card-body">
-                        <h5 class="card-title">Chemistry Elements</h5>
-                        <p class="card-text"><small class="text-muted">850 students</small></p>
-                        <a href="#" class="btn btn-sm btn-outline-primary">Study Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3" data-aos="zoom-in" data-aos-delay="400">
-                <div class="card">
-                    <img src="https://picsum.photos/seed/geography/250/200" class="card-img-top"
-                        alt="Geography Capitals">
-                    <div class="card-body">
-                        <h5 class="card-title">Geography Capitals</h5>
-                        <p class="card-text"><small class="text-muted">720 students</small></p>
-
-                        <a href="#" class="btn btn-sm btn-outline-primary">Study Now</a>
-                    </div>
-                </div>
-            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="col-12">
+          <p class="text-center">No decks accessed recently.</p>
         </div>
-    </section>
-
-    <!-- Top Creators Section -->
-    <section class="top-creators mb-5" data-aos="fade-up">
-        <h2 class="section-title">Top Creators</h2>
-        <div class="row">
-            <div class="col-md-3 mb-3 text-center" data-aos="flip-up" data-aos-delay="100">
-                <img src="https://picsum.photos/seed/creator1/100/100" class="rounded-circle mb-3" alt="Creator 1">
-                <h5>John Doe</h5>
-                <p><small class="text-muted">500 flashcard sets</small></p>
+      {% endif %}
+    </div>
+  </section>
+  
+  <!-- Popular Decks Section -->
+  <section class="popular-decks mb-5" data-aos="fade-up">
+    <h2 class="section-title">Popular Decks</h2>
+    <div class="row">
+      {% if popular_decks and popular_decks.count %}
+        {% for deck in popular_decks %}
+          <div class="col-md-3 mb-3" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:"100" }}">
+            <div class="card">
+              <div class="card-body text-center">
+                <h5 class="card-title">{{ deck.name }}</h5>
+                <p class="card-text">
+                  <small class="text-muted">{{ deck.views }} views</small>
+                </p>
+                <a href="{% url 'deck_detail' deck.id %}" class="btn popular-btn">Study Now</a>
+              </div>
             </div>
-            <div class="col-md-3 mb-3 text-center" data-aos="flip-up" data-aos-delay="200">
-                <img src="https://picsum.photos/seed/creator2/100/100" class="rounded-circle mb-3" alt="Creator 2">
-                <h5>Jane Smith</h5>
-                <p><small class="text-muted">450 flashcard sets</small></p>
-            </div>
-            <div class="col-md-3 mb-3 text-center" data-aos="flip-up" data-aos-delay="300">
-                <img src="https://picsum.photos/seed/creator3/100/100" class="rounded-circle mb-3" alt="Creator 3">
-                <h5>Mike Johnson</h5>
-                <p><small class="text-muted">400 flashcard sets</small></p>
-            </div>
-            <div class="col-md-3 mb-3 text-center" data-aos="flip-up" data-aos-delay="400">
-                <img src="https://picsum.photos/seed/creator4/100/100" class="rounded-circle mb-3" alt="Creator 4">
-                <h5>Emily Brown</h5>
-                <p><small class="text-muted">350 flashcard sets</small></p>
-            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="col-12">
+          <p class="text-center">No popular decks available.</p>
         </div>
-    </section>
+      {% endif %}
+    </div>
+  </section>
 
-    <!-- Quiz Section -->
-    <section class="quiz-section mb-5" data-aos="fade-up">
-        <h2 class="section-title">Test Your Knowledge</h2>
-        <div class="row">
-            <div class="col-md-6 mb-3" data-aos="zoom-in" data-aos-delay="100">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Quick Quiz</h3>
-                        <p class="card-text">Take a quick quiz on your recent flashcard sets to reinforce your
-                            learning.</p>
-                        <a href="#" class="btn btn-primary">Start Quiz</a>
-                    </div>
-                </div>
+  <!-- Top Creators Section -->
+  <section class="top-creators mb-5" data-aos="fade-up">
+    <h2 class="section-title">Top Creators</h2>
+    <div class="row">
+      <div class="col-md-3 mb-3 text-center" data-aos="flip-up" data-aos-delay="100">
+        <img src="https://picsum.photos/seed/creator1/100/100" class="rounded-circle mb-3" alt="Creator 1">
+        <h5>John Doe</h5>
+        <p><small class="text-muted">500 flashcard sets</small></p>
+      </div>
+      <div class="col-md-3 mb-3 text-center" data-aos="flip-up" data-aos-delay="200">
+        <img src="https://picsum.photos/seed/creator2/100/100" class="rounded-circle mb-3" alt="Creator 2">
+        <h5>Jane Smith</h5>
+        <p><small class="text-muted">450 flashcard sets</small></p>
+      </div>
+      <div class="col-md-3 mb-3 text-center" data-aos="flip-up" data-aos-delay="300">
+        <img src="https://picsum.photos/seed/creator3/100/100" class="rounded-circle mb-3" alt="Creator 3">
+        <h5>Mike Johnson</h5>
+        <p><small class="text-muted">400 flashcard sets</small></p>
+      </div>
+      <div class="col-md-3 mb-3 text-center" data-aos="flip-up" data-aos-delay="400">
+        <img src="https://picsum.photos/seed/creator4/100/100" class="rounded-circle mb-3" alt="Creator 4">
+        <h5>Emily Brown</h5>
+        <p><small class="text-muted">350 flashcard sets</small></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Study Tip Section -->
+  <section class="study-tip-section mb-5" data-aos="fade-up">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="card study-tip-card shadow-lg">
+            <div class="card-header text-center py-3" data-aos="fade-right">
+              <h2 class="mb-0" style="font-weight: 600; color: #fff;">Study Tip of the Day</h2>
             </div>
-            <div class="col-md-6 mb-3" data-aos="zoom-in" data-aos-delay="200">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Challenge a Friend</h3>
-                        <p class="card-text">Invite a friend to compete in a quiz and see who scores higher!</p>
-                        <a href="#" class="btn btn-secondary">Challenge Now</a>
-                    </div>
-                </div>
+            <div class="card-body" data-aos="fade-left">
+              <blockquote class="blockquote text-center mb-0">
+                <p class="mb-0" style="font-size: 1.25rem; font-style: italic; color: #555;">
+                  "Consistency is key – reviewing your flashcards daily builds lasting knowledge."
+                </p>
+                <footer class="blockquote-footer mt-2" style="color: #fff;">
+                  <cite title="Source Title">Deckit Team</cite>
+                </footer>
+              </blockquote>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </main>
 {% endblock content %}
