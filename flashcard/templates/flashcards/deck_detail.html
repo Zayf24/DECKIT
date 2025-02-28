@@ -24,7 +24,7 @@
          style="background: linear-gradient(90deg, #0A1128, #1C2341); color: white; border: none; border-radius: 8px;">
           <i class="fas fa-chevron-right"></i>
       </a>
-  </div>
+    </div>
 
     <!-- Flashcard -->
     <div id="flashcard-viewer" class="d-flex justify-content-center align-items-center">
@@ -34,20 +34,20 @@
           <div class="card-face card-front">
             <div class="card-content">
               <h3 class="card-title">{{ current_card.title }}</h3>
-              <div class="flip-instruction">
-                <i class="fas fa-sync-alt"></i>
-                <small>Click to flip</small>
-              </div>
+            </div>
+            <div class="flip-instruction">
+              <i class="fas fa-sync-alt"></i>
+              <small>Click to flip</small>
             </div>
           </div>
           <!-- Back Side (Description) -->
           <div class="card-face card-back">
             <div class="card-content">
               <p class="card-description">{{ current_card.description }}</p>
-              <div class="flip-instruction">
-                <i class="fas fa-sync-alt"></i>
-                <small>Click to flip</small>
-              </div>
+            </div>
+            <div class="flip-instruction">
+              <i class="fas fa-sync-alt"></i>
+              <small>Click to flip</small>
             </div>
           </div>
         </div>
@@ -58,6 +58,11 @@
     <p class="text-center mt-4 text-muted">
       Card {{ current_index|add:"1" }} of {{ flashcards|length }}
     </p>
+  </div>
+  <div class="text-center mt-4">
+    <a href="{% url 'start_quiz' deck.id %}" class="btn take-quiz-btn">
+      <i class="fas fa-play-circle"></i> Start Quiz
+    </a>
   </div>
   {% else %}
   <div class="text-center py-5">
@@ -78,10 +83,11 @@
   margin: 0 auto;
 }
 
+/* Increased flashcard size */
 .flashcard-card {
   width: 100%;
-  max-width: 400px;
-  height: 300px;
+  max-width: 600px; /* increased from 400px */
+  height: 400px;    /* increased from 300px */
   perspective: 1200px;
   cursor: pointer;
 }
@@ -92,6 +98,26 @@
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.6s ease-in-out;
+}
+
+.take-quiz-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #28a745, #218838); /* Gradient Green */
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.take-quiz-btn:hover {
+  transform: scale(1.05);
+  color:white;
+  background: linear-gradient(135deg, #218838, #1e7e34); /* Darker Green */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 .flashcard-card.flipped .card-inner {
@@ -109,7 +135,8 @@
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  backface-visibility: hidden; /* Ensures proper flipping */
+  backface-visibility: hidden;
+  flex-direction: column;
 }
 
 /* Front Card */
@@ -132,29 +159,36 @@
   position: relative;
 }
 
-.card-title {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #1a1a1a;
-}
-
-.card-description {
-  font-size: 1.25rem;
-  line-height: 1.6;
-  color: #333;
-}
-
+/* Flip Instruction Styling */
 .flip-instruction {
   position: absolute;
   bottom: 1rem;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
+  font-size: 1rem;
   opacity: 0.7;
   transition: opacity 0.3s ease;
 }
 
 .flashcard-card:hover .flip-instruction {
   opacity: 1;
+}
+
+/* Updated description styling for larger card */
+.card-description {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #333;
+  max-height: 200px; /* increased from 150px */
+  overflow-y: auto;
+  word-wrap: break-word;
+}
+
+.card-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
 }
 
 .nav-btn {
@@ -192,20 +226,7 @@
 
 @media (max-width: 768px) {
   .flashcard-card {
-    height: 300px;
-  }
-  
-  .card-title {
-    font-size: 1.5rem;
-  }
-  
-  .card-description {
-    font-size: 1rem;
-  }
-  
-  .nav-btn {
-    width: 40px;
-    height: 40px;
+    height: 400px;
   }
 }
 </style>

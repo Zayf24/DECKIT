@@ -1,0 +1,74 @@
+{% extends 'user/base.html' %}
+{% block title %}Quiz Results - {{ deck.name }}{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="card shadow-lg border-0 rounded-4 p-4">
+    <div class="card-body text-center">
+      <h3 class="text-primary fw-bold">Quiz Completed</h3>
+      <p class="text-muted fs-5">Deck: <strong class="text-dark">{{ deck.name }}</strong></p>
+
+      <!-- Score Display -->
+      <div class="mt-4">
+        <h4 class="fw-bold text-success">Your Score: {{ quiz.score }} / {{ quiz.total_questions }}</h4>
+      </div>
+
+      {% comment %} <!-- Progress Bars -->
+      <div class="mt-4">
+        <p class="fw-bold text-success">✅ Correct Answers: {{ quiz.correct_answers }}</p>
+        <div class="progress mb-3">
+          <div id="correct-bar" class="progress-bar bg-success progress-bar-striped progress-bar-animated" 
+               role="progressbar" 
+               aria-valuemin="0" 
+               aria-valuemax="{{ quiz.total_questions }}">
+          </div>
+        </div>
+
+        <p class="fw-bold text-danger">❌ Wrong Answers: {{ quiz.wrong_answers }}</p>
+        <div class="progress">
+          <div id="wrong-bar" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" 
+               role="progressbar" 
+               aria-valuemin="0" 
+               aria-valuemax="{{ quiz.total_questions }}">
+          </div>
+        </div>
+      </div> {% endcomment %}
+
+      <!-- Quiz Graph -->
+      <div class="my-5">
+        <img src="{{ graph_url }}" alt="Quiz Result Graph" class="img-fluid rounded shadow">
+      </div>
+
+      <!-- Back to Decks Button -->
+      <div class="mt-4">
+        <a href="{% url 'deck_list' %}" class="btn btn-lg btn-primary shadow-sm">
+          <i class="fas fa-arrow-left me-2"></i>Back to Decks
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Styles -->
+<style>
+  .progress {
+    height: 10px;
+  }
+</style>
+
+<!-- JavaScript to Calculate Progress Bar Widths -->
+{% comment %} <script>
+  document.addEventListener("DOMContentLoaded", function () {
+      let correctAnswers = {{ quiz.correct_answers }};
+      let wrongAnswers = {{ quiz.wrong_answers }};
+      let totalQuestions = {{ quiz.total_questions }};
+
+      let correctPercentage = (correctAnswers / totalQuestions) * 100;
+      let wrongPercentage = (wrongAnswers / totalQuestions) * 100;
+
+      document.getElementById("correct-bar").style.width = correctPercentage + "%";
+      document.getElementById("wrong-bar").style.width = wrongPercentage + "%";
+  });
+</script> {% endcomment %}
+
+{% endblock %}

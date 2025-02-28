@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 import user.views as user_views
 import flashcard.views as flashcard_views
+import quiz.views as quiz_views
 
 urlpatterns = [
     path('',user_views.hero,name='hero'),
@@ -33,6 +34,10 @@ urlpatterns = [
     path('deck/<int:deck_id>/', flashcard_views.deck_detail, name='deck_detail'),
     path('search/', flashcard_views.search_decks, name='search_decks'),
     path('logout/',user_views.logout_view, name='logout'),
+    path('create-pdf/',flashcard_views.create_deck_pdf, name='create_deck_pdf'),
+    path('start/<int:deck_id>/', quiz_views.start_quiz, name='start_quiz'),
+    path('question/', quiz_views.quiz_question, name='quiz_question'),
+    path('result/', quiz_views.quiz_result, name='quiz_result'),
 ] 
 
 urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

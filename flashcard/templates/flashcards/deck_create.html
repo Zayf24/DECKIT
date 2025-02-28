@@ -29,6 +29,24 @@
             {% endfor %}
           </div>
         </div>
+        {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+        {% if "deck_create" in message.extra_tags %}
+        {% if "warning" in message.tags %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {% elif "success" in message.tags %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {% else %}
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          {% endif %}
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
         <hr>
         <!-- Flashcards Section -->
         <div class="mb-4">

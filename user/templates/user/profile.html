@@ -96,7 +96,7 @@
 {% endblock css %}
 
 {% block content %}
-<div class="container">
+<div class="container" style="margin-bottom:30px;">
   <!-- Profile Header -->
   <div class="profile-header" data-aos="fade-down">
     <div class="profile-pic-container">
@@ -116,7 +116,7 @@
       <p><strong>Email:</strong> {{ user.email }}</p>
       <p><strong>Date of Birth:</strong> {{ user.date_of_birth|default:"N/A" }}</p>
       <p><strong>Phone:</strong> {{ user.phone }}</p>
-      <a href="{% url 'logout' %}" class="btn btn-danger btn-logout" data-aos="fade-up" data-aos-delay="300">Logout</a>
+      <a href="{% url 'logout' %}" class="btn btn-danger btn-logout">Logout</a>
     </div>
   </div>
 </div>

@@ -20,7 +20,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('{% static 'images\heroimage.jpg'%}') no-repeat center center;
+  background: url('{% static "images/heroimage.jpg" %}') no-repeat center center;
   background-size: cover;
   opacity: 0.1;
   z-index: 0;
@@ -120,23 +120,41 @@ body {
 .popular-decks .card:hover {
   transform: translateY(-3px);
 }
-
 .recent-btn, .popular-btn {
-    border: 2px solid #1c2341;
-    padding: 0.5rem 1.5rem;
-    font-weight: 600;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-    border-radius: 4px;
-    outline:none;
-  }
-  .recent-btn:hover, .popular-btn:hover {
-    background-color: #1c2341;
-    color: #fff;
-    transform: scale(1.05);
-    outline: none;
-    box-shadow: none;
+  border: 2px solid #1c2341;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  border-radius: 4px;
+  outline: none;
+}
+.recent-btn:hover, .popular-btn:hover {
+  background-color: #1c2341;
+  color: #fff;
+  transform: scale(1.05);
+  outline: none;
+  box-shadow: none;
+}
 
-  }
+/* DECK LIST SECTION */
+.deck-list-section {
+  background: linear-gradient(135deg, #f5f7ff, #ffffff);
+  padding: 60px 0;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+.deck-list-section .btn-primary {
+  padding: 0.8rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.deck-list-section .btn-primary:hover {
+  background-color: #0a1128;
+  transform: scale(1.05);
+}
 
 /* TOP CREATORS */
 .top-creators img {
@@ -186,7 +204,7 @@ body {
 <header class="hero-section text-white" data-aos="fade-down">
   <div class="container text-center">
     <h1 class="display-4 mb-3">Welcome to DECKIT!</h1>
-    <p class="lead mb-4">Transform your study sessions with interactive flashcards.Learn smarter, achieve more.</p>
+    <p class="lead mb-4">Transform your study sessions with interactive flashcards. Learn smarter, achieve more.</p>
     <a href="{% url 'create_deck' %}" class="btn btn-light btn-lg" data-aos="fade-up" data-aos-delay="300">Get Started</a>
   </div>
 </header>
@@ -208,23 +226,31 @@ body {
           </div>
         </div>
       </div>
-      <!-- View Your Flashcards -->
+      <!-- Generate Deck from PDF -->
       <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="200">
         <div class="card view-card h-100">
           <div class="card-body d-flex flex-column justify-content-center align-items-center">
-            <i class="fas fa-eye fa-3x mb-3 text-primary"></i>
-            <h3 class="card-title">Review Your Flashcards</h3>
-            <p class="card-text text-center">Access and refresh all your flashcard decks at a glance.</p>
-            <a href="{% url 'deck_list' %}" class="btn btn-primary mt-3">View Decks</a>
+            <i class="fas fa-file-pdf fa-3x mb-3 text-primary"></i>
+            <h3 class="card-title">Generate Deck from PDF</h3>
+            <p class="card-text text-center">Upload a PDF to automatically generate flashcards for you.</p>
+            <a href="{% url 'create_deck_pdf' %}" class="btn btn-primary mt-3">Generate Now</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Deck List Section -->
+  <section class="deck-list-section text-center my-5" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Explore Your Decks</h2>
+      <p class="lead">Browse your saved decks and pick up where you left off.</p>
+      <a href="{% url 'deck_list' %}" class="btn btn-lg btn-primary mt-3" data-aos="zoom-in">View Decks</a>
+    </div>
+  </section>
+
   <!-- Recent Activities Section -->
-<!-- Recent Activities Section -->
-<section class="recent-activities mb-5" data-aos="fade-up">
+  <section class="recent-activities mb-5" data-aos="fade-up">
     <h2 class="section-title">Recent Activities</h2>
     <div class="row">
       {% if recent_decks and recent_decks.count %}
