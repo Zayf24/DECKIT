@@ -29,7 +29,7 @@ Ensure that Python is installed on your system.
 
 1. Clone the repository:  
    ```sh
-   git clone <repository-url>
+   git clone https://github.com/Zayf24/DECKIT
    cd flashcards-project
    ```  
 2. Create a virtual environment and activate it:  
